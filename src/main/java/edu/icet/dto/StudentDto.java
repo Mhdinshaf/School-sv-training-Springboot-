@@ -1,5 +1,6 @@
 package edu.icet.dto;
 
+import edu.icet.util.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,6 @@ public class StudentDto {
     private Integer id;
     private  String name;
     private String address;
+    private Gender gender;
 
 }

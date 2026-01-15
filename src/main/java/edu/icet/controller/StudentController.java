@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StudentController {
 
-    @Autowired
-    StudetnService studetnService;
+
+
 
     @GetMapping
     public String addStudent(){
-        return studetnService.getVersion();
+        return null;
     }
 
 }
