@@ -8,7 +8,7 @@ public interface StudetnService {
    void addStudent(StudentDto student);
    void updateStudent(StudentDto student);
    void deleteStudent(Integer id);
-   void searchById(Integer id);
+   StudentDto searchById(Integer id);
    List<StudentDto> getAll();
 
 }

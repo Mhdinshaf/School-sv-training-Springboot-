@@ -2,34 +2,57 @@ package edu.icet.service.impl;
 
 
 import edu.icet.dto.StudentDto;
+import edu.icet.entity.StudentEntity;
+import edu.icet.repository.StudentRepository;
 import edu.icet.service.StudetnService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class StudentServiceImpl implements StudetnService {
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     @Override
     public void addStudent(StudentDto student) {
-
+        StudentEntity studentEntity=modelMapper.map(student, StudentEntity.class);
+        studentRepository.save(studentEntity);
     }
 
     @Override
     public void updateStudent(StudentDto student) {
-
+            studentRepository.save(modelMapper.map(student,StudentEntity.class));
     }
 
     @Override
     public void deleteStudent(Integer id) {
-
+            studentRepository.deleteById(id);
     }
 
     @Override
-    public void searchById(Integer id) {
-
+    public StudentDto searchById(Integer id) {
+            StudentEntity studentEntity=studentRepository.findById(id).get();
+            StudentDto studentDto=modelMapper.map(studentEntity, StudentDto.class);
+            return studentDto;
     }
 
     @Override
     public List<StudentDto> getAll() {
-        return List.of();
+        List<StudentEntity> studentEntities=studentRepository.findAll();
+        ArrayList<StudentDto> studentDtoArrayList=new ArrayList<>();
+        studentEntities.forEach(studentEntity -> {
+            StudentDto studentDto=modelMapper.map(studentEntity,StudentDto.class);
+            studentDtoArrayList.add(studentDto);
+        });
+        return  studentDtoArrayList;
     }
+
 }

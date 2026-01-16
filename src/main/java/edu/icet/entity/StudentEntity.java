@@ -2,10 +2,10 @@ package edu.icet.entity;
 
 import edu.icet.util.Gender;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +14,12 @@ import lombok.ToString;
 @Entity
 public class StudentEntity {
 
-        private Integer id;
-        private  String name;
-        private String address;
-        private Gender gender;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String name;
+    private String address;
+    private Gender gender;
 
-    }
+}
 
